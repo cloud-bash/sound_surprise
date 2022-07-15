@@ -1,3 +1,4 @@
+import 'dart:math';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
@@ -52,12 +53,13 @@ class MyPainter extends CustomPainter {
 
 class _MyAppState extends State<MyApp> {
   bool isPlaying = false;
-  double frequency = 20;
+  double frequency = notes.values.first;
   double balance = 0;
   double volume = 1;
   waveTypes waveType = waveTypes.SINUSOIDAL;
   int sampleRate = 96000;
   List<int>? oneCycleData;
+  String noteName = notes.keys.first;
 
   @override
   Widget build(BuildContext context) {
@@ -139,7 +141,7 @@ class _MyAppState extends State<MyApp> {
                         color: Colors.red,
                       ),
                       SizedBox(height: 5),
-                      Text("Note"),
+                      Text(noteName + ' frequency: ' + frequency.toString()),
                       Container(
                           width: double.infinity,
                           height: 40,
@@ -156,7 +158,12 @@ class _MyAppState extends State<MyApp> {
                                     ),
                                     onPressed: () {
                                       setState(() {
-                                        this.frequency = 440.00;
+                                        int rand =
+                                            new Random().nextInt(notes.length);
+                                        this.frequency =
+                                            notes.values.elementAt(rand);
+                                        this.noteName =
+                                            notes.keys.elementAt(rand);
                                         SoundGenerator.setFrequency(
                                             this.frequency);
                                       });
