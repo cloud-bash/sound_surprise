@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:sound_generator/sound_generator.dart';
 import 'package:sound_generator/waveTypes.dart';
+import 'notenames.dart';
 
 void main() {
   runApp(MyApp());
@@ -138,7 +139,7 @@ class _MyAppState extends State<MyApp> {
                         color: Colors.red,
                       ),
                       SizedBox(height: 5),
-                      Text("Frequency"),
+                      Text("Note"),
                       Container(
                           width: double.infinity,
                           height: 40,
@@ -149,25 +150,50 @@ class _MyAppState extends State<MyApp> {
                                 Expanded(
                                   flex: 2,
                                   child: Center(
-                                      child: Text(
-                                          this.frequency.toStringAsFixed(2) +
-                                              " Hz")),
+                                      child: IconButton(
+                                    icon: Icon(
+                                      Icons.music_note,
+                                    ),
+                                    onPressed: () {
+                                      setState(() {
+                                        this.frequency = 440.00;
+                                        SoundGenerator.setFrequency(
+                                            this.frequency);
+                                      });
+                                    },
+                                  )),
                                 ),
-                                Expanded(
-                                  flex: 8, // 60%
-                                  child: Slider(
-                                      min: 20,
-                                      max: 10000,
-                                      value: this.frequency,
-                                      onChanged: (_value) {
-                                        setState(() {
-                                          this.frequency = _value.toDouble();
-                                          SoundGenerator.setFrequency(
-                                              this.frequency);
-                                        });
-                                      }),
-                                )
                               ])),
+                      SizedBox(height: 5),
+                      // Text("Frequency"),
+                      // Container(
+                      //     width: double.infinity,
+                      //     height: 40,
+                      //     child: Row(
+                      //         mainAxisAlignment: MainAxisAlignment.center,
+                      //         crossAxisAlignment: CrossAxisAlignment.stretch,
+                      //         children: <Widget>[
+                      //           Expanded(
+                      //             flex: 2,
+                      //             child: Center(
+                      //                 child: Text(
+                      //                     "${this.frequency.toStringAsFixed(2)} Hz")),
+                      //           ),
+                      //           Expanded(
+                      //             flex: 8, // 60%
+                      //             child: Slider(
+                      //                 min: 20,
+                      //                 max: 10000,
+                      //                 value: this.frequency,
+                      //                 onChanged: (_value) {
+                      //                   setState(() {
+                      //                     this.frequency = _value.toDouble();
+                      //                     SoundGenerator.setFrequency(
+                      //                         this.frequency);
+                      //                   });
+                      //                 }),
+                      //           )
+                      //         ])),
                       SizedBox(height: 5),
                       Text("Balance"),
                       Container(
