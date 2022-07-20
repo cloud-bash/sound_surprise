@@ -207,29 +207,26 @@ class _MyAppState extends State<MyApp> {
                                 ),
                               ])),
                       SizedBox(height: 5),
-                      // Wrap(
-                      //   direction: Axis.horizontal,
-                      //   children: noteSequence
-                      //       .map((i) => Expanded(
-                      //             flex: 2,
-                      //             child: Center(
-                      //                 child: IconButton(
-                      //               tooltip: i,
-                      //               icon: Icon(
-                      //                 Icons.music_note,
-                      //               ),
-                      //               onPressed: () {
-                      //                 setState(() {
-                      //                   this.frequency = noteSequence[i];
-
-                      //                   SoundGenerator.setFrequency(
-                      //                       this.frequency);
-                      //                 });
-                      //               },
-                      //             )),
-                      //           ))
-                      //       .toList(),
-                      // ),
+                      Wrap(
+                          direction: Axis.horizontal,
+                          children: noteSequence.entries
+                              .map(
+                                (e) => Center(
+                                    child: IconButton(
+                                  tooltip: e.key,
+                                  icon: const Icon(
+                                    Icons.music_note,
+                                  ),
+                                  onPressed: () {
+                                    setState(() {
+                                      frequency = e.value;
+                                      SoundGenerator.setFrequency(frequency);
+                                      print(noteSequence);
+                                    });
+                                  },
+                                )),
+                              )
+                              .toList()),
                     ]))));
   }
 
