@@ -174,7 +174,7 @@ class _MyAppState extends State<MyApp> {
                       ),
                       SizedBox(height: 5),
                       Text(
-                        'Random:  ' + noteName,
+                        noteSequence == {} ? "Random" : "Random",
                         style: const TextStyle(
                           fontSize: 25,
                         ),
