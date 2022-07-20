@@ -173,7 +173,12 @@ class _MyAppState extends State<MyApp> {
                         color: Colors.red,
                       ),
                       SizedBox(height: 5),
-                      Text('random note:  ' + noteName),
+                      Text(
+                        'Random:  ' + noteName,
+                        style: const TextStyle(
+                          fontSize: 25,
+                        ),
+                      ),
                       Container(
                           width: double.infinity,
                           height: 40,
@@ -187,7 +192,8 @@ class _MyAppState extends State<MyApp> {
                                       child: IconButton(
                                     tooltip: 'random note',
                                     icon: Icon(
-                                      Icons.music_note,
+                                      Icons.question_mark_rounded,
+                                      color: Color.fromARGB(255, 255, 77, 77),
                                     ),
                                     onPressed: () {
                                       setState(() {
@@ -210,22 +216,24 @@ class _MyAppState extends State<MyApp> {
                       Wrap(
                           direction: Axis.horizontal,
                           children: noteSequence.entries
-                              .map(
-                                (e) => Center(
-                                    child: TextButton.icon(
-                                  label: Text(e.key),
-                                  icon: const Icon(
-                                    Icons.music_note,
-                                  ),
-                                  onPressed: () {
-                                    setState(() {
-                                      frequency = e.value;
-                                      SoundGenerator.setFrequency(frequency);
-                                      print(noteSequence);
-                                    });
-                                  },
-                                )),
-                              )
+                              .map((e) => TextButton.icon(
+                                    label: Text(
+                                      e.key,
+                                      style: TextStyle(
+                                          fontSize: 20, color: Colors.black),
+                                    ),
+                                    icon: const Icon(
+                                      Icons.music_note,
+                                      color: Color.fromARGB(255, 0, 0, 0),
+                                    ),
+                                    onPressed: () {
+                                      setState(() {
+                                        frequency = e.value;
+                                        SoundGenerator.setFrequency(frequency);
+                                        print(noteSequence);
+                                      });
+                                    },
+                                  ))
                               .toList()),
                     ]))));
   }
