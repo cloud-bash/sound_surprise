@@ -212,8 +212,8 @@ class _MyAppState extends State<MyApp> {
                           children: noteSequence.entries
                               .map(
                                 (e) => Center(
-                                    child: IconButton(
-                                  tooltip: e.key,
+                                    child: TextButton.icon(
+                                  label: Text(e.key),
                                   icon: const Icon(
                                     Icons.music_note,
                                   ),
